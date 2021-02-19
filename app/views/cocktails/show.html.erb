@@ -1,0 +1,14 @@
+<h1><%= @cocktail.name %></h1>
+
+<% if @cocktail.doses.empty? %>
+  <p>No doses yet for this cocktail! </p>
+  <p> You can add a dose <%= link_to "here", new_cocktail_dose_path(@cocktail) %> </p>
+<% end %>
+
+<ul>
+  <% @cocktail.doses.each do |dose| %>
+    <li><%= link_to dose.description, edit_cocktail_dose_path(@cocktail, dose) %> of <%= dose.ingredient.name %> --- <%= link_to "delete dose", cocktail_dose_path(@cocktail, dose), method: :delete %> </li>
+  <% end %>
+</ul>
+
+<%= link_to "All cocktails", cocktails_path %>
